@@ -120,8 +120,7 @@ This API allows the user to fetch XBRL facts from the XBRL US database in an XML
     <TaxonomiesAxisID>{sendFilterSettings.selectedTaxonomiesAxisValuePostVariable}</TaxonomiesAxisID>
     <TaxonomiesConceptID>{sendFilterSettings.selectedTaxonomiesValuePostVariable}</TaxonomiesConceptID>
     <Ultimus>{sendFilterSettings.ultimus}</Ultimus>
-    <DimReqd>{!sendFilterSettings.defaultValuesOnly}</DimReqd>
-    ```
+    <DimReqd>{!sendFilterSettings.defaultValuesOnly}</DimReqd>```
 
 * **Notes:**
 
