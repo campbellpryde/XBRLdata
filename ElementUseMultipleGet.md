@@ -48,37 +48,81 @@ This API allows the user to fetch XBRL facts from the XBRL US database in an XML
    | 11       | 2015      |
    | 10       | 2014      |
    | 9       | 2013      |
-   
+
 
 
 
 * **Data Params**
 
-  <_If making a post request, what should the body payload look like? URL Params rules apply here too._>
+    The API supports the same params as the URL.
 
 * **Success Response:**
 
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+```XML
+<dataRequest>
+  <fact>
+    <entity>
+      <![CDATA[ MICROSOFT CORPORATION ]]>
+      </entity>
+    <entityCode>0000789019</entityCode>
+    <accessionID>135819</accessionID>
+    <elementName>Assets</elementName>
+    <namespace>http://fasb.org/us-gaap/2015-01-31</namespace>
+    <extensionflag>N</extensionflag>
+    <axis/>
+    <member/>
+    <Units>USD</Units>
+    <amount>172384000000</amount>
+    <period>Y</period>
+    <year>2014</year>
+    <filings>2015-07-31</filings>
+    <aligned>FALSE</aligned>
+    <factID>104030451</factID>
+    <dimensions/>
+    <dimensionCount>0</dimensionCount>
+    <url>
+    http://csuite.xbrl.us/php/dispatch.php?Task=htmlExport&FactID=104030451
+    </url>
+  </fact>
+  <count>
+    <elementName>Number of Rows: 1</elementName>
+    </count>
+</dataRequest>
+```
 
-  * **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
-
-* **Error Response:**
-
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
-
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
-
-  OR
-
-  * **Code:** 422 UNPROCESSABLE ENTRY <br />
-    **Content:** `{ error : "Email Invalid" }`
 
 * **Sample Call:**
 
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._>
+```Flex
+<mx:HTTPService id="ElementValue_HTTPRequest" url="{SERVERNAME}{SERVERPATH}dispatch.php"
+		 useProxy="false"
+		 method="POST"  
+		 showBusyCursor="true"
+		 result="{globalResultEventHandler(event)}{generateColsForAxis(event)}"
+		 fault="Alert.show(HTTP_REQUEST_ERROR +
+		 		event.fault.faultString, 'Connection Error')">
+    <mx:request xmlns="">
+    <Task>ElementUseMultipleGet</Task>
+    <ElementID>{sendFilterSettings.elementUseID}</ElementID>
+    <EntityID>{sendFilterSettings.entityUseID}</EntityID>
+    <AxisID>{sendFilterSettings.axisUseID}</AxisID>
+    <MemberID>{sendFilterSettings.memberUseID}</MemberID>
+    <PeriodID>{sendFilterSettings.period}</PeriodID>
+    <YearID>{sendFilterSettings.endYear}</YearID>
+    <StartYearID>{sendFilterSettings.startYear}</StartYearID>
+    <NoYearsID>{sendFilterSettings.noYears}</NoYearsID>
+    <RestatedID>{sendFilterSettings.latestID}</RestatedID>
+    <AccessionID>{sendFilterSettings.accessionUseID}</AccessionID>
+    <IndustryID>{sendFilterSettings.industryUseID}</IndustryID>
+    <DivisionID>{sendFilterSettings.divisionUseID}</DivisionID>
+    <DimensionID>{sendFilterSettings.dimensionUseID}</DimensionID>
+    <TaxonomiesMemberID>{sendFilterSettings.selectedTaxonomiesMemberValuePostVariable}</TaxonomiesMemberID>
+    <TaxonomiesAxisID>{sendFilterSettings.selectedTaxonomiesAxisValuePostVariable}</TaxonomiesAxisID>
+    <TaxonomiesConceptID>{sendFilterSettings.selectedTaxonomiesValuePostVariable}</TaxonomiesConceptID>
+    <Ultimus>{sendFilterSettings.ultimus}</Ultimus>
+    <DimReqd>{!sendFilterSettings.defaultValuesOnly}</DimReqd>
+    ```
 
 * **Notes:**
 
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._>
+  For additional parameters contact campbell.pryde@xbrl.us.
