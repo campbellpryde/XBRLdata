@@ -39,7 +39,7 @@ This API allows the user to fetch XBRL facts from the XBRL US database in an XML
 
    `MemberID=[alphanumeric]` - The XBRL member element
 
-   `DimensionID=[alphanumeric]` - Axis and member i.e. DimensionID=IncomeTaxAuthorityAxis%3AAbasMember
+   `DimensionID=[alphanumeric]` - Axis and member i.e. DimensionID=IncomeTaxAuthorityAxis%3AAbasMember. A list of comma separated pairs can also be listed.
 
    `RestatedID=[boolean]` - A value of false will exclude amounts subsequently restated, a value of true will include amounts that were restated
 
