@@ -39,6 +39,8 @@ This API allows the user to fetch XBRL facts from the XBRL US database in an XML
 
    `MemberID=[alphanumeric]` - The XBRL member element
 
+   `DimensionID=[alphanumeric]` - Axis and member i.e. DimensionID=IncomeTaxAuthorityAxis%3AAbasMember
+
    `RestatedID=[boolean]` - A value of false will exclude amounts subsequently restated, a value of true will include amounts that were restated
 
    `TaxonomiesConceptID=[alphanumericNumeric]` - Enter comma separated list of namespaces. For the extension enter http://www.entity.com/extension/XX where xx is a reference number corresponding to a taxonomy.
@@ -93,7 +95,7 @@ This API allows the user to fetch XBRL facts from the XBRL US database in an XML
 
 * **Sample Call:**
 
-```Flex
+```
 <mx:HTTPService id="ElementValue_HTTPRequest" url="{SERVERNAME}{SERVERPATH}dispatch.php"
 		 useProxy="false"
 		 method="POST"  
@@ -120,7 +122,9 @@ This API allows the user to fetch XBRL facts from the XBRL US database in an XML
     <TaxonomiesAxisID>{sendFilterSettings.selectedTaxonomiesAxisValuePostVariable}</TaxonomiesAxisID>
     <TaxonomiesConceptID>{sendFilterSettings.selectedTaxonomiesValuePostVariable}</TaxonomiesConceptID>
     <Ultimus>{sendFilterSettings.ultimus}</Ultimus>
-    <DimReqd>{!sendFilterSettings.defaultValuesOnly}</DimReqd>```
+    <DimReqd>{!sendFilterSettings.defaultValuesOnly}</DimReqd>
+
+```
 
 * **Notes:**
 
