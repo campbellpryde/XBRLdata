@@ -132,4 +132,6 @@ This API allows the user to fetch XBRL facts from the XBRL US database in an XML
 
 * **Notes:**
 
+  Any parameters defined that are not in the list above will be ignored.
+
   For questions contact campbell.pryde@xbrl.us.
